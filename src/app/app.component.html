@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <button (click)="onLoginClick()" class="btn btn-primary" style="margin-right: 20px;">Login</button>
+      <button (click)="onLogoutClick()" class="btn btn-primary">Logout</button>
+    </div>
+  </div>
+
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/" routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact: true}">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/users" routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact: true}">Users</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/about" routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact: true}">About Page</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/template-form" routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact: true}">Template Form</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/reactive-form" routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact: true}">Reactive Form</a>
+    </li>
+  </ul>
+
+  <div *ngIf="userAdded" style="margin-top: 30px;">
+    Some text shows when button in Users Component clicked
+  </div>
+</div>
+
+<router-outlet></router-outlet>

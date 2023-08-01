@@ -1,0 +1,20 @@
+.nav {
+  & .nav-item {
+    display: inline-block;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    max-width: 200px;
+
+    & .active {
+      padding: 5px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      background-color: #c374ff;
+    }
+
+    &:hover {
+      background-color: #c374ff;
+    }
+  }
+}

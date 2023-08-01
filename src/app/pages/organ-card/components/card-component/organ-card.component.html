@@ -1,0 +1,8 @@
+<div>
+  Organ with id {{ organ.id }} has {{ organ.name }} as name
+</div>
+
+<a [routerLink]="['/organs', 1, 'Name']"
+  [queryParams]="{page: 1, search: 'Name'}"
+  [fragment]="'Load'"
+(click)="getOrganDetails()">Get organ details</a>

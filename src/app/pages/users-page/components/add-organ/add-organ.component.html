@@ -1,0 +1,22 @@
+<div class="add-organs__container">
+  <div style="margin-bottom: 10px;display: flex;flex-direction: column">
+    <label style="margin-bottom: 5px;">Organ Name</label>
+    <input type="text"
+           class="form-control"
+           #organInput>
+  </div>
+
+  <div style="margin-bottom: 10px;display: flex;flex-direction: column">
+    <label style="margin-bottom: 5px;">Organ Status</label>
+    <input type="text"
+           class="form-control"
+           #organStatusInput>
+  </div>
+
+  <button style="margin-right: 20px"
+          class="btn btn-primary"
+          (click)="onOrganAdded()">
+    Add organ
+  </button>
+<!--  <button (click)="onOrganNameChanged()" class="btn btn-primary">Change organ Name</button>-->
+</div>

@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form class="form" (ngSubmit)="onFormSubmit()" #form="ngForm">
+
+        <button (click)="fillValues()" class="btn btn-sm btn-info" style="margin-bottom: 20px;">Fill Values</button>
+        <div *ngIf="!group.valid && group.touched">Show when group is invalid</div>
+        <div ngModelGroup="inputGroup" #group="ngModelGroup">
+          <div class="form-group">
+            <label for="username">User name</label>
+            <input id="username"
+                   type="text"
+                   class="form-control"
+                   name="username"
+                   ngModel
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email"
+                   type="text"
+                   class="form-control"
+                   name="email"
+                   ngModel
+                   required
+                   email
+                   #emailInput="ngModel"/>
+            <span class="help-text" *ngIf="!emailInput.valid && emailInput.touched">Please, enter valid email!</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>About</label>
+          <textarea name="about" id="" cols="30" rows="10" class="form-control" [(ngModel)]="about"></textarea>
+          <div>{{about}}</div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select id="gender"
+                  type="text"
+                  class="form-control"
+                  name="gender"
+                  ngModel="male">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          <div class="mt2">
+            <button type="submit"
+                    class="btn btn-primary"
+                    [disabled]="!form.valid">Submit
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <div *ngIf="submitted">
+        <h3>Your Data</h3>
+        <div>User: {{ userData.username }}</div>
+        <div>Email: {{ userData.email }}</div>
+        <div>Gender: {{ userData.gender }}</div>
+        <div>About: {{ userData.about }}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div [ngStyle]="{ backgroundColor: getColor() }" class="organ-card">
+  <div class="organ-card__header">
+    <h3 class="organ-card__title">Organ name is {{ organ.name }}</h3>
+    <div style="margin-bottom: 20px;">Organ status is {{ getOrganStatus() }}</div>
+  </div>
+  <div>
+    <button [ngClass]="{ offline: organ.status === 'Off' }" class="btn btn-primary organ-card__btn"
+       (click)="onStatusChanged()">{{ organStatusMessage }}</button>
+    <button class="btn btn-primary" (click)="onOrganEdit()">
+      Edit organ card
+    </button>
+  </div>
+  <div *ngIf="editOn">
+    <app-edit-organ [organ]="organ"></app-edit-organ>
+  </div>
+</div>
+
+
+

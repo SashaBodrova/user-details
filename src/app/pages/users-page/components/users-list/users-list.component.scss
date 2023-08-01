@@ -1,0 +1,16 @@
+.user-list app-user:last-child .user-card {
+  margin-bottom: 0;
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px;
+  border-radius: 0 16px 16px 16px;
+  border: 1px solid #5d367e;
+  margin-bottom: 30px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

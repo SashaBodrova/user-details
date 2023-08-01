@@ -1,0 +1,14 @@
+.organs-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.organs-list__title {
+  margin-bottom: 20px;
+}
+
+.organs__cards-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

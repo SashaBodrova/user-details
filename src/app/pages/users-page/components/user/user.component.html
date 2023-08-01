@@ -1,0 +1,14 @@
+<div *ngIf="user" class="user-card__container">
+  <div class="user-card__info">
+    <div class="user-card__name">User name is {{ user.name }}</div>
+    <div class="user-card__id">User ID is {{ user.id }}</div>
+
+    <button class="btn btn-primary" (click)="onUserDetailsClick()">User details</button>
+  </div>
+
+  <div *ngIf="userDetails" class="user-card__organs-list">
+    <app-organs></app-organs>
+  </div>
+</div>
+
+

@@ -1,0 +1,27 @@
+.organ-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 10px;
+  border: 1px solid #5d367e;
+  border-radius: 8px;
+  margin-right: 20px;
+  background-color: #2e1f5b;
+  width: fit-content;
+
+
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.organ-card__title {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+
+.organ-card__btn {
+  margin-right: 20px;
+}
