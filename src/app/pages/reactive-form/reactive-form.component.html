@@ -8,11 +8,13 @@
               <label for="name">Name</label>
               <input id="name" type="text" class="form-control" formControlName="username">
               <span *ngIf="onValidation('username')" class="help-block">Please, enter your name</span>
+              <span *ngIf="restrictedName.nameIsRestricted" class="help-block">Please, enter valid name</span>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
               <input id="email" type="text" class="form-control" formControlName="email">
               <span *ngIf="onValidation('email')" class="help-block">Please, enter valid email</span>
+              <span *ngIf="" class="help-block">Please, enter valid email</span>
             </div>
           </div>
 

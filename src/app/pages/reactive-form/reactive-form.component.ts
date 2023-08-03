@@ -1,5 +1,14 @@
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
+import {
+  AbstractControl, AsyncValidator,
+  FormArray,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
+import { UniqueEmailValidator } from "../../validators/unique-email-validator";
 
 @Component({
   selector: 'app-reactive-form',
@@ -8,21 +17,41 @@ import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
 })
 export class ReactiveFormComponent {
   genders = ['male', 'female', 'other']
+  restrictedNames: string[] = ['Leela']
+  restrictedName = {nameIsRestricted: false}
   signUpForm: FormGroup
+  // emailControl = new FormControl('', {asyncValidators: [this.uniqueEmailValidator.validate.bind(this.uniqueEmailValidator)],
+  // updateOn: 'blur'})
 
-  constructor() {
+  hobbies = new FormArray<FormControl<string | null>>([])
+
+  constructor(private uniqueEmailValidator: UniqueEmailValidator) {
     this.signUpForm = new FormGroup<any>({
       'userData': new FormGroup({
-        'username': new FormControl(null, Validators.required),
-        'email': new FormControl(null, [Validators.required, Validators.email]),
+        'username': new FormControl(null, [Validators.required, this.isRestrictedNames(this.restrictedNames)]),
+        'email': new FormControl(null,
+          {
+            validators: [Validators.required, Validators.email],
+            asyncValidators: [this.uniqueEmailValidator.validate.bind(this.uniqueEmailValidator)],
+            updateOn: 'blur'
+          })
       }),
-      'gender': new FormControl('female'),
-      'hobbies': new FormArray([])
+      'gender':
+        new FormControl('female'),
+      'hobbies':
+      this.hobbies
     })
   }
 
+  isRestrictedNames(restricredNames: string[]): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const forbidden = this.restrictedNames.includes(control.value)
+      return forbidden ? this.restrictedName = {nameIsRestricted: true} : null
+    }
+  }
+
   get hobbyControls() {
-    return (<FormArray>this.signUpForm.get('hobbies')).controls
+    return this.hobbies.controls
   }
 
   onSubmit() {
@@ -30,11 +59,10 @@ export class ReactiveFormComponent {
   }
 
   onValidation(path: string) {
-    return !this.signUpForm.get(path)?.valid && this.signUpForm.get(path)?.touched
+    return (!this.signUpForm.get(path)?.valid && this.signUpForm.get(path)?.touched) ?? true
   }
 
   onAddHobby() {
-    const control = new FormControl(null, [Validators.required]);
-    (<FormArray>this.signUpForm.get('hobbies')).push(control)
+    this.hobbies.push(new FormControl('', [Validators.required]))
   }
 }
